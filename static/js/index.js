@@ -34,6 +34,24 @@ function EncendidoApagado(){
 	}
     }
 
+function mouseDown() {
+  document.getElementById("myButton").style.color = "green";
+  document.getElementById("sensor").innerHTML="ON";
+	message = new Paho.MQTT.Message("ON");
+    	message.destinationName = "luisrod-234@hotmail.com/test1";
+    	client.send(message);	 
+}
+
+function mouseUp() {
+  document.getElementById("myButton").style.color = "black";
+  document.getElementById("sensor").innerHTML="OFF";
+	message = new Paho.MQTT.Message("OFF");
+    	message.destinationName = "luisrod-234@hotmail.com/test1";
+    	client.send(message);
+  
+}
+
+
 function historial(){	
 	//alert("led off");
 	console.log("Historial led ");
