@@ -20,8 +20,9 @@ function LED1_Off(){
 
 function EncendidoApagado(){
       var elem = document.getElementById("sensor");
-      elem.style.color = elem.style.color == "green" ? "red" : "green";
-	if(elem.style.color=="green"){
+      //elem.style.color = elem.style.color == "green" ? "red" : "green";
+	color = elem.style.color == "green" ? "red" : "green";
+	if(color=="green"){
 	document.getElementById("sensor").innerHTML="ON";
 	message = new Paho.MQTT.Message("ON");
     	message.destinationName = "luisrod-234@hotmail.com/test1";
@@ -42,16 +43,6 @@ function historial(){
     	client.send(message);
 	//document.getElementById("sensor").innerHTML="led off";
 }
-
-function E_actual(){	
-	//alert("led off");
-	console.log("Estado Actual ");
-	message = new Paho.MQTT.Message("conocer estado");
-    	message.destinationName = "luisrod-234@hotmail.com/test1";
-    	client.send(message);
-	//document.getElementById("sensor").innerHTML="led off";
-}
-
 
 // Create a client instance
   //client = new Paho.MQTT.Client("postman.cloudmqtt.com", 14970);
@@ -110,20 +101,9 @@ function E_actual(){
 	  else if(y=="hola, el LED se encuentra apagado"){
 	  document.getElementById("sensor").innerHTML=y;
 	  document.getElementById("historial").innerHTML="";	  
-	  }
-	  else if(y=="ESTADO ACTUAL ENCENDIDO"){
-	  document.getElementById("estadoactual").innerHTML=y;
-	  document.getElementById("sensor").innerHTML="";
-	  document.getElementById("historial").innerHTML="";
-          }
-          else if(y="ESTADO ACTUAL APAGADO"){
-	  document.getElementById("estadoactual").innerHTML=y;
-	  document.getElementById("sensor").innerHTML="";
-	  document.getElementById("historial").innerHTML="";
 	  }else {
 	  document.getElementById("historial").innerHTML=y;
 	  document.getElementById("sensor").innerHTML="";
-	  document.getElementById("estadoactual").innerHTML=""	  
 	  }
 	  
   }
